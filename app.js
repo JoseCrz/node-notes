@@ -6,7 +6,7 @@ const utils = require('./utils')
 
 yargs.command({
     command: 'create',
-    describe: 'Creates a new note.',
+    describe: '-> Creates a new note.',
     builder: {
         title: {
             describe: 'Note title',
@@ -26,7 +26,7 @@ yargs.command({
 
 yargs.command({
     command: 'delete',
-    describe: 'Deletes a note',
+    describe: '-> Deletes a note.',
     builder: {
         title: {
             describe: 'Note title',
@@ -41,17 +41,24 @@ yargs.command({
 
 yargs.command({
     command: 'list',
-    describe: 'List all notes',
+    describe: '-> Lists all notes.',
     handler: function () {
         utils.listNotes()
     }
 })
 
 yargs.command({
-    command: 'open',
-    describe: 'Opens up a note',
-    handler: function () {
-        console.log(chalk.yellow('Opening note...'))
+    command: 'read',
+    describe: '-> Reads the selected note.',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        utils.readNote(argv.title) 
     }
 })
 

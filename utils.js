@@ -30,8 +30,15 @@ const listNotes = () => {
     });
 }
 
-const readNote = () => {
-    
+const readNote = (title) => {
+    const notes = loadNotes()
+    const chosenNote = notes.find(note => note.title === title)
+    if (chosenNote) {
+        console.log(chalk.bold(chosenNote.title))
+        console.log(chalk.gray(chosenNote.body))
+    } else {
+        console.log(chalk.bgRed('Note not found!'))
+    }
 }
 
 const deleteNote = (title) => {

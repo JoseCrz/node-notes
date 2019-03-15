@@ -5,7 +5,7 @@ const utils = require('./utils')
 //---------<Configure yargs commands>----------
 
 yargs.command({
-    command: 'new',
+    command: 'create',
     describe: 'Creates a new note.',
     builder: {
         title: {
@@ -25,10 +25,17 @@ yargs.command({
 })
 
 yargs.command({
-    command: 'remove',
-    describe: 'Removes a note',
-    handler: function () {
-        console.log(chalk.yellow('Removing a note...'))
+    command: 'delete',
+    describe: 'Deletes a note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        utils.deleteNote(argv.title)
     }
 })
 

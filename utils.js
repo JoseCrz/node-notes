@@ -7,7 +7,7 @@ const createNote = (title, body) => {
     const duplicateNotes = notes.filter((notes) => notes.title === title)
 
     if (duplicateNotes.length > 0) {
-        console.log(chalk.red('Title already taken!'))
+        console.log(chalk.bgRed('Title already taken!'))
 
     } else {
         const note = {
@@ -18,12 +18,26 @@ const createNote = (title, body) => {
         notes.push(note)
         saveNotes(notes)
 
-        console.log(chalk.bgGreen('Note saved!'))
+        console.log(chalk.bgGreen('Note created!'))
     }
 }
 
 const readNote = () => {
     
+}
+
+const deleteNote = (title) => {
+    const notes = loadNotes()
+    const remainingNotes = notes.filter((notes) => notes.title !== title)
+
+    if (notes.length === remainingNotes.length) {
+        console.log(chalk.bgRed('Note not found!'))
+
+    } else {
+        saveNotes(remainingNotes)
+        console.log(chalk.bgGreen('Note deleted'))
+    }
+
 }
 
 const loadNotes = () => {
@@ -44,5 +58,6 @@ const saveNotes = (notes) => {
 
 module.exports = {
     createNote: createNote,
-    readNote: readNote
+    readNote: readNote,
+    deleteNote: deleteNote
 }

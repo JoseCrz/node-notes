@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const yargs = require('yargs')
+const utils = require('./utils')
 
 //---------<Configure yargs commands>----------
 
@@ -19,8 +20,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        console.log(chalk.yellow(`Title: ${argv.title}`))
-        console.log(chalk.green(`Body: ${argv.body}`))
+        utils.createNote(argv.title, argv.body)
     }
 })
 

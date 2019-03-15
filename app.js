@@ -43,7 +43,7 @@ yargs.command({
     command: 'list',
     describe: 'List all notes',
     handler: function () {
-        console.log(chalk.yellow('Listing notes..'))
+        utils.listNotes()
     }
 })
 

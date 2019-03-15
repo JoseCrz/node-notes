@@ -4,7 +4,7 @@ const chalk = require('chalk')
 const createNote = (title, body) => {
     const notes = loadNotes()
     
-    const duplicateNotes = notes.filter((notes) => notes.title === title)
+    const duplicateNotes = notes.filter((note) => note.title === title)
 
     if (duplicateNotes.length > 0) {
         console.log(chalk.bgRed('Title already taken!'))
@@ -20,6 +20,14 @@ const createNote = (title, body) => {
 
         console.log(chalk.bgGreen('Note created!'))
     }
+}
+
+const listNotes = () => {
+    const notes = loadNotes()
+    console.log(chalk.cyan('Your notes:'))
+    notes.forEach(note => {
+        console.log(chalk.gray(`~ ${note.title}`))
+    });
 }
 
 const readNote = () => {
@@ -59,5 +67,6 @@ const saveNotes = (notes) => {
 module.exports = {
     createNote: createNote,
     readNote: readNote,
-    deleteNote: deleteNote
+    deleteNote: deleteNote,
+    listNotes: listNotes
 }
